@@ -1,0 +1,1683 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mr. Mo Life — Life is short, so why not live it while looking and feeling good</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Barlow:wght@300;400;500;600&family=Barlow+Condensed:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #0A0A0B;
+    --bg2: #111114;
+    --bg3: #18181D;
+    --surface: #1E1E24;
+    --surface2: #26262E;
+    --border: rgba(255,255,255,0.07);
+    --border2: rgba(255,255,255,0.13);
+    --text: #F0EDE8;
+    --text-muted: #888890;
+    --text-dim: #55555E;
+    --gold: #C9A84C;
+    --gold-light: #E8C876;
+    --gold-dim: rgba(201,168,76,0.15);
+    --teal: #2EC4B6;
+    --teal-dim: rgba(46,196,182,0.12);
+    --rose: #E8637A;
+    --rose-dim: rgba(232,99,122,0.12);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Barlow', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 5vw;
+    height: 64px;
+    background: rgba(10,10,11,0.85);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px; font-weight: 600; letter-spacing: 0.12em;
+    color: var(--gold);
+    text-decoration: none;
+  }
+  .nav-links { display: flex; gap: 32px; list-style: none; }
+  .nav-links a {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 13px; font-weight: 500; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--text-muted);
+    text-decoration: none; transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--text); }
+  .nav-cta {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 12px; font-weight: 600; letter-spacing: 0.16em;
+    text-transform: uppercase;
+    padding: 9px 20px;
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    background: transparent;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-decoration: none;
+  }
+  .nav-cta:hover { background: var(--gold); color: #0A0A0B; }
+
+  /* SWITCHERS */
+  .nav-switchers { display: flex; gap: 6px; align-items: center; }
+  .switcher-btn {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 11px; font-weight: 500; letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 6px 10px;
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--text-muted);
+    cursor: pointer; position: relative;
+    transition: all 0.2s;
+    white-space: nowrap;
+  }
+  .switcher-btn:hover { border-color: var(--border2); color: var(--text); }
+  .switcher-dropdown {
+    display: none; position: absolute; top: calc(100% + 8px); right: 0;
+    background: #18181D; border: 1px solid var(--border2);
+    min-width: 150px; z-index: 200;
+  }
+  .switcher-btn.open .switcher-dropdown { display: block; }
+  .switcher-option {
+    display: block; width: 100%; padding: 10px 14px; text-align: left;
+    background: transparent; border: none;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 12px; font-weight: 500; letter-spacing: 0.1em;
+    color: var(--text-muted); cursor: pointer;
+    transition: all 0.15s;
+    border-bottom: 1px solid var(--border);
+  }
+  .switcher-option:last-child { border-bottom: none; }
+  .switcher-option:hover { background: var(--surface); color: var(--text); }
+  .switcher-option.active { color: var(--gold); }
+  @media (max-width: 900px) { .nav-switchers { gap: 4px; } }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    text-align: center;
+    padding: 120px 5vw 80px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute; inset: 0; z-index: 0;
+    background:
+      radial-gradient(ellipse 60% 50% at 20% 60%, rgba(201,168,76,0.08) 0%, transparent 70%),
+      radial-gradient(ellipse 50% 40% at 80% 30%, rgba(46,196,182,0.07) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 40% at 50% 80%, rgba(232,99,122,0.06) 0%, transparent 70%);
+  }
+  .hero-noise {
+    position: absolute; inset: 0; z-index: 0; opacity: 0.03;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size: 200px;
+  }
+  .hero-eyebrow {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 12px; font-weight: 600; letter-spacing: 0.22em;
+    text-transform: uppercase; color: var(--gold);
+    margin-bottom: 24px; position: relative; z-index: 1;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .hero-eyebrow::before, .hero-eyebrow::after {
+    content: ''; width: 40px; height: 1px; background: var(--gold); opacity: 0.5;
+  }
+  .hero h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(56px, 10vw, 120px);
+    font-weight: 300; line-height: 0.92;
+    letter-spacing: -0.01em;
+    color: var(--text);
+    position: relative; z-index: 1;
+    margin-bottom: 8px;
+  }
+  .hero h1 em {
+    font-style: italic; color: var(--gold);
+  }
+  .hero-sub {
+    font-family: 'Barlow', sans-serif;
+    font-size: clamp(15px, 2vw, 18px); font-weight: 300;
+    color: var(--text-muted); line-height: 1.7;
+    max-width: 520px; margin: 28px auto 0;
+    position: relative; z-index: 1;
+  }
+  .hero-actions {
+    display: flex; gap: 16px; margin-top: 44px;
+    position: relative; z-index: 1;
+    flex-wrap: wrap; justify-content: center;
+  }
+  .btn-primary {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 13px; font-weight: 600; letter-spacing: 0.16em;
+    text-transform: uppercase;
+    padding: 15px 36px;
+    background: var(--gold);
+    color: #0A0A0B;
+    border: none; cursor: pointer; text-decoration: none;
+    transition: all 0.2s;
+    display: inline-block;
+  }
+  .btn-primary:hover { background: var(--gold-light); transform: translateY(-1px); }
+  .btn-ghost {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 13px; font-weight: 500; letter-spacing: 0.16em;
+    text-transform: uppercase;
+    padding: 15px 36px;
+    background: transparent;
+    color: var(--text-muted);
+    border: 1px solid var(--border2); cursor: pointer; text-decoration: none;
+    transition: all 0.2s;
+    display: inline-block;
+  }
+  .btn-ghost:hover { color: var(--text); border-color: var(--border2); background: var(--surface); }
+
+  .hero-stats {
+    display: flex; gap: 48px; margin-top: 72px;
+    position: relative; z-index: 1;
+    flex-wrap: wrap; justify-content: center;
+  }
+  .hero-stat { text-align: center; }
+  .hero-stat-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 36px; font-weight: 500; color: var(--gold);
+    line-height: 1;
+  }
+  .hero-stat-label {
+    font-size: 11px; font-weight: 500; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--text-dim);
+    margin-top: 6px;
+  }
+  .hero-divider {
+    width: 1px; height: 48px; background: var(--border2);
+    align-self: center;
+  }
+
+  /* SECTION COMMON */
+  section { padding: 100px 5vw; }
+  .section-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 11px; font-weight: 600; letter-spacing: 0.22em;
+    text-transform: uppercase; color: var(--gold);
+    margin-bottom: 16px;
+  }
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(34px, 5vw, 56px); font-weight: 400;
+    line-height: 1.08; color: var(--text);
+    max-width: 640px;
+  }
+  .section-title em { font-style: italic; color: var(--gold); }
+
+  /* CATEGORIES */
+  .categories { background: var(--bg2); }
+  .cat-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px; margin-top: 56px;
+  }
+  .cat-card {
+    position: relative; overflow: hidden;
+    padding: 48px 36px;
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    cursor: pointer;
+    transition: all 0.3s;
+    min-height: 280px;
+    display: flex; flex-direction: column; justify-content: flex-end;
+  }
+  .cat-card::before {
+    content: ''; position: absolute; inset: 0;
+    opacity: 0; transition: opacity 0.3s;
+  }
+  .cat-card.travel::before { background: radial-gradient(ellipse at 30% 30%, var(--teal-dim), transparent 60%); }
+  .cat-card.wellness::before { background: radial-gradient(ellipse at 30% 30%, var(--gold-dim), transparent 60%); }
+  .cat-card.style::before { background: radial-gradient(ellipse at 30% 30%, var(--rose-dim), transparent 60%); }
+  .cat-card:hover { border-color: var(--border2); }
+  .cat-card:hover::before { opacity: 1; }
+  .cat-icon {
+    font-size: 40px; margin-bottom: 20px;
+    position: relative; z-index: 1;
+    transition: transform 0.3s;
+  }
+  .cat-card:hover .cat-icon { transform: scale(1.1); }
+  .cat-tag {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 10px; font-weight: 600; letter-spacing: 0.2em;
+    text-transform: uppercase;
+    padding: 4px 10px; margin-bottom: 14px;
+    display: inline-block; width: fit-content;
+    position: relative; z-index: 1;
+  }
+  .cat-card.travel .cat-tag { background: var(--teal-dim); color: var(--teal); }
+  .cat-card.wellness .cat-tag { background: var(--gold-dim); color: var(--gold); }
+  .cat-card.style .cat-tag { background: var(--rose-dim); color: var(--rose); }
+  .cat-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 30px; font-weight: 500;
+    color: var(--text); line-height: 1.1;
+    position: relative; z-index: 1;
+  }
+  .cat-desc {
+    font-size: 14px; color: var(--text-muted);
+    margin-top: 10px; line-height: 1.6;
+    position: relative; z-index: 1;
+  }
+  .cat-count {
+    position: absolute; top: 32px; right: 32px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 48px; font-weight: 300;
+    color: var(--border2); line-height: 1;
+    transition: color 0.3s;
+  }
+  .cat-card:hover .cat-count { color: rgba(255,255,255,0.08); }
+
+  /* FEATURED PRODUCTS */
+  .products-header {
+    display: flex; align-items: flex-end; justify-content: space-between;
+    margin-bottom: 48px; flex-wrap: wrap; gap: 20px;
+  }
+  .filter-tabs {
+    display: flex; gap: 4px;
+  }
+  .filter-tab {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 12px; font-weight: 500; letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 8px 16px;
+    background: transparent; border: 1px solid var(--border);
+    color: var(--text-muted); cursor: pointer;
+    transition: all 0.2s;
+  }
+  .filter-tab.active, .filter-tab:hover {
+    background: var(--surface); color: var(--text);
+    border-color: var(--border2);
+  }
+  .filter-tab.active { border-color: var(--gold); color: var(--gold); }
+
+  .products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 2px;
+  }
+  .product-card {
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    overflow: hidden;
+    transition: all 0.3s;
+    position: relative;
+    display: none;
+  }
+  .product-card.visible { display: block; }
+  .product-card:hover { border-color: var(--border2); transform: translateY(-2px); }
+  .product-img {
+    width: 100%; height: 220px;
+    background: var(--surface);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 64px;
+    position: relative; overflow: hidden;
+  }
+  .product-img::after {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(to top, var(--bg3) 0%, transparent 50%);
+  }
+  .product-badge {
+    position: absolute; top: 14px; left: 14px; z-index: 2;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 10px; font-weight: 600; letter-spacing: 0.14em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+  }
+  .badge-hot { background: var(--rose); color: #fff; }
+  .badge-new { background: var(--teal); color: #0A0A0B; }
+  .badge-sale { background: var(--gold); color: #0A0A0B; }
+  .product-body { padding: 20px 22px 24px; }
+  .product-cat {
+    font-size: 11px; font-weight: 500; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--text-dim);
+    margin-bottom: 8px;
+  }
+  .product-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px; font-weight: 500;
+    color: var(--text); line-height: 1.2;
+    margin-bottom: 8px;
+  }
+  .product-desc {
+    font-size: 13px; color: var(--text-muted);
+    line-height: 1.6; margin-bottom: 18px;
+  }
+  .product-footer {
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .product-price {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px; font-weight: 500; color: var(--gold);
+  }
+  .product-price-orig {
+    font-size: 13px; color: var(--text-dim);
+    text-decoration: line-through; margin-left: 6px;
+  }
+  .product-cta {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 11px; font-weight: 600; letter-spacing: 0.14em;
+    text-transform: uppercase;
+    padding: 9px 16px;
+    background: transparent; border: 1px solid var(--border2);
+    color: var(--text-muted); cursor: pointer;
+    transition: all 0.2s; text-decoration: none;
+    display: inline-block;
+  }
+  .product-cta:hover { background: var(--gold); color: #0A0A0B; border-color: var(--gold); }
+  .product-stars {
+    font-size: 12px; color: var(--gold); letter-spacing: 1px;
+    margin-bottom: 4px;
+  }
+
+  /* WHY US */
+  .why { background: var(--bg2); }
+  .why-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 2px; margin-top: 56px;
+  }
+  .why-card {
+    padding: 36px 28px;
+    background: var(--bg3);
+    border: 1px solid var(--border);
+  }
+  .why-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 13px; font-weight: 500; color: var(--gold);
+    letter-spacing: 0.08em; margin-bottom: 20px;
+  }
+  .why-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px; font-weight: 500; color: var(--text);
+    margin-bottom: 10px;
+  }
+  .why-body {
+    font-size: 13px; color: var(--text-muted); line-height: 1.7;
+  }
+
+  /* NEWSLETTER */
+  .newsletter {
+    background: var(--surface);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    text-align: center;
+    padding: 80px 5vw;
+    position: relative; overflow: hidden;
+  }
+  .newsletter::before {
+    content: ''; position: absolute; inset: 0;
+    background: radial-gradient(ellipse 80% 60% at 50% 50%, rgba(201,168,76,0.05) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .newsletter h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(30px, 5vw, 48px); font-weight: 400;
+    color: var(--text); margin-bottom: 12px;
+    position: relative; z-index: 1;
+  }
+  .newsletter h2 em { font-style: italic; color: var(--gold); }
+  .newsletter p {
+    font-size: 15px; color: var(--text-muted);
+    margin-bottom: 36px; position: relative; z-index: 1;
+  }
+  .email-form {
+    display: flex; gap: 0; max-width: 460px; margin: 0 auto;
+    position: relative; z-index: 1;
+  }
+  .email-form input {
+    flex: 1;
+    padding: 14px 20px;
+    background: var(--bg3);
+    border: 1px solid var(--border2);
+    border-right: none;
+    color: var(--text);
+    font-family: 'Barlow', sans-serif;
+    font-size: 14px;
+    outline: none;
+  }
+  .email-form input::placeholder { color: var(--text-dim); }
+  .email-form button {
+    padding: 14px 28px;
+    background: var(--gold); border: none;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 12px; font-weight: 600; letter-spacing: 0.16em;
+    text-transform: uppercase; color: #0A0A0B;
+    cursor: pointer; transition: background 0.2s; white-space: nowrap;
+  }
+  .email-form button:hover { background: var(--gold-light); }
+
+  /* FOOTER */
+  footer {
+    background: var(--bg);
+    border-top: 1px solid var(--border);
+    padding: 60px 5vw 32px;
+  }
+  .footer-top {
+    display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 48px; margin-bottom: 48px;
+  }
+  .footer-brand-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 26px; font-weight: 600; letter-spacing: 0.08em;
+    color: var(--gold); margin-bottom: 12px;
+  }
+  .footer-brand-desc {
+    font-size: 13px; color: var(--text-dim); line-height: 1.7;
+    max-width: 240px;
+  }
+  .footer-col h4 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 11px; font-weight: 600; letter-spacing: 0.18em;
+    text-transform: uppercase; color: var(--text-muted);
+    margin-bottom: 18px;
+  }
+  .footer-col ul { list-style: none; }
+  .footer-col ul li { margin-bottom: 10px; }
+  .footer-col ul a {
+    font-size: 13px; color: var(--text-dim);
+    text-decoration: none; transition: color 0.2s;
+  }
+  .footer-col ul a:hover { color: var(--text); }
+  .footer-bottom {
+    padding-top: 24px; border-top: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 12px;
+  }
+  .footer-copy {
+    font-size: 12px; color: var(--text-dim);
+  }
+  .footer-disc {
+    font-size: 11px; color: var(--text-dim);
+    max-width: 500px; text-align: right; line-height: 1.5;
+  }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .hero-eyebrow { animation: fadeUp 0.6s ease both; }
+  .hero h1 { animation: fadeUp 0.6s 0.1s ease both; }
+  .hero-sub { animation: fadeUp 0.6s 0.2s ease both; }
+  .hero-actions { animation: fadeUp 0.6s 0.3s ease both; }
+  .hero-stats { animation: fadeUp 0.6s 0.4s ease both; }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    .cat-grid { grid-template-columns: 1fr; }
+    .why-grid { grid-template-columns: 1fr 1fr; }
+    .footer-top { grid-template-columns: 1fr 1fr; }
+    .nav-links { display: none; }
+  }
+  @media (max-width: 600px) {
+    .why-grid { grid-template-columns: 1fr; }
+    .footer-top { grid-template-columns: 1fr; }
+    .hero-stats { gap: 28px; }
+    .hero-divider { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#">MO LIFE</a>
+  <ul class="nav-links">
+    <li><a href="#categories" data-i18n="nav_shop">Shop</a></li>
+    <li><a href="#featured" data-i18n="nav_picks">Top Picks</a></li>
+    <li><a href="#why" data-i18n="nav_about">About</a></li>
+  </ul>
+  <div class="nav-switchers">
+    <div class="switcher-btn" id="langSwitcher" onclick="toggleDropdown('langSwitcher', event)">
+      <span id="langLabel">EN</span> ▾
+      <div class="switcher-dropdown" id="langDropdown">
+        <button class="switcher-option active" onclick="setLang('en', 'EN', event)">🇬🇧 English</button>
+        <button class="switcher-option" onclick="setLang('fr', 'FR', event)">🇫🇷 Français</button>
+        <button class="switcher-option" onclick="setLang('es', 'ES', event)">🇪🇸 Español</button>
+        <button class="switcher-option" onclick="setLang('de', 'DE', event)">🇩🇪 Deutsch</button>
+        <button class="switcher-option" onclick="setLang('tl', 'TL', event)">🇵🇭 Tagalog</button>
+      </div>
+    </div>
+    <div class="switcher-btn" id="currSwitcher" onclick="toggleDropdown('currSwitcher', event)">
+      <span id="currLabel">USD $</span> ▾
+      <div class="switcher-dropdown" id="currDropdown">
+        <button class="switcher-option active" onclick="setCurrency('USD', '$', 1, event)">🇺🇸 USD — $</button>
+        <button class="switcher-option" onclick="setCurrency('GBP', '£', 0.79, event)">🇬🇧 GBP — £</button>
+        <button class="switcher-option" onclick="setCurrency('EUR', '€', 0.92, event)">🇪🇺 EUR — €</button>
+        <button class="switcher-option" onclick="setCurrency('CAD', 'C$', 1.36, event)">🇨🇦 CAD — C$</button>
+        <button class="switcher-option" onclick="setCurrency('PHP', '₱', 57.5, event)">🇵🇭 PHP — ₱</button>
+      </div>
+    </div>
+  </div>
+  <a href="#featured" class="nav-cta" data-i18n="nav_cta">Shop Now</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-noise"></div>
+
+  <div class="hero-eyebrow">Mr. Mo Life</div>
+  <h1>Life is short,<br>so why not <em>live it</em><br>looking & feeling good.</h1>
+  <p class="hero-sub">Feel your best to live your best.</p>
+  <div class="hero-actions">
+    <a href="#featured" class="btn-primary">Explore Products</a>
+    <a href="#categories" class="btn-ghost">Browse Categories</a>
+  </div>
+  <div class="hero-stats">
+    <div class="hero-stat">
+      <div class="hero-stat-num">200+</div>
+      <div class="hero-stat-label">Curated Products</div>
+    </div>
+    <div class="hero-divider"></div>
+    <div class="hero-stat">
+      <div class="hero-stat-num">50K</div>
+      <div class="hero-stat-label">Happy Customers</div>
+    </div>
+    <div class="hero-divider"></div>
+    <div class="hero-stat">
+      <div class="hero-stat-num">4.9★</div>
+      <div class="hero-stat-label">Average Rating</div>
+    </div>
+    <div class="hero-divider"></div>
+    <div class="hero-stat">
+      <div class="hero-stat-num">48h</div>
+      <div class="hero-stat-label">Fast Shipping</div>
+    </div>
+  </div>
+</section>
+
+<!-- CATEGORIES -->
+<section class="categories" id="categories">
+  <div class="section-label">Shop by Lifestyle</div>
+  <h2 class="section-title">Your world,<br><em>fully equipped.</em></h2>
+  <div class="cat-grid">
+    <div class="cat-card travel" onclick="filterProducts('travel')">
+      <span class="cat-count">01</span>
+      <div class="cat-icon">✈️</div>
+      <span class="cat-tag">Travel & Tech</span>
+      <div class="cat-name">The Nomad<br>Collection</div>
+      <div class="cat-desc">Gear that keeps up — noise-cancelling, packable, and always ready for the next flight.</div>
+    </div>
+    <div class="cat-card wellness" onclick="filterProducts('wellness')">
+      <span class="cat-count">02</span>
+      <div class="cat-icon">💪</div>
+      <span class="cat-tag">Health & Wellness</span>
+      <div class="cat-name">The Vitality<br>Edit</div>
+      <div class="cat-desc">From recovery to performance — the essentials that keep you at your best wherever you are.</div>
+    </div>
+    <div class="cat-card style" onclick="filterProducts('style')">
+      <span class="cat-count">03</span>
+      <div class="cat-icon">✨</div>
+      <span class="cat-tag">Fashion & Beauty</span>
+      <div class="cat-name">The Style<br>Arsenal</div>
+      <div class="cat-desc">Look the part at altitude, poolside, or the after-party. Effortless luxury for every scene.</div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURED PRODUCTS -->
+<section id="featured">
+  <div class="products-header">
+    <div>
+      <div class="section-label">Hand-Picked Picks</div>
+      <h2 class="section-title">This week's<br><em>top finds.</em></h2>
+    </div>
+    <div class="filter-tabs">
+      <button class="filter-tab active" onclick="filterProducts('all', this)">All</button>
+      <button class="filter-tab" onclick="filterProducts('travel', this)">Travel</button>
+      <button class="filter-tab" onclick="filterProducts('wellness', this)">Wellness</button>
+      <button class="filter-tab" onclick="filterProducts('style', this)">Style</button>
+    </div>
+  </div>
+
+  <div class="products-grid" id="productsGrid">
+
+    <div class="product-card visible" data-cat="travel">
+      <div class="product-img" style="background: #141420;">🎧
+        <span class="product-badge badge-hot">Hot</span>
+      </div>
+      <div class="product-body">
+        <div class="product-stars">★★★★★</div>
+        <div class="product-cat">Travel / Tech</div>
+        <div class="product-name">Sony WH-1000XM5 Headphones</div>
+        <div class="product-desc">Industry-leading noise cancellation. 30hr battery. Foldable for carry-on perfection.</div>
+        <div class="product-footer">
+          <div>
+            <span class="product-price">$349</span>
+            <span class="product-price-orig">$399</span>
+          </div>
+          <a href="#" class="product-cta">Shop Deal →</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card visible" data-cat="travel">
+      <div class="product-img" style="background: #141820;">🔋
+        <span class="product-badge badge-new">New</span>
+      </div>
+      <div class="product-body">
+        <div class="product-stars">★★★★★</div>
+        <div class="product-cat">Travel / Tech</div>
+        <div class="product-name">Anker 27W MagSafe Power Bank</div>
+        <div class="product-desc">Slim, airport-safe, mag-snaps to your phone. Never hunt for an outlet again.</div>
+        <div class="product-footer">
+          <div>
+            <span class="product-price">$79</span>
+          </div>
+          <a href="#" class="product-cta">Shop Deal →</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card visible" data-cat="wellness">
+      <div class="product-img" style="background: #181410;">💊
+        <span class="product-badge badge-sale">Sale</span>
+      </div>
+      <div class="product-body">
+        <div class="product-stars">★★★★☆</div>
+        <div class="product-cat">Health / Wellness</div>
+        <div class="product-name">AG1 Daily Greens Bundle</div>
+        <div class="product-desc">75 vitamins, minerals, and whole-food sourced nutrients. One scoop covers your baseline.</div>
+        <div class="product-footer">
+          <div>
+            <span class="product-price">$69</span>
+            <span class="product-price-orig">$99</span>
+          </div>
+          <a href="#" class="product-cta">Shop Deal →</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card visible" data-cat="wellness">
+      <div class="product-img" style="background: #141818;">⌚
+        <span class="product-badge badge-hot">Hot</span>
+      </div>
+      <div class="product-body">
+        <div class="product-stars">★★★★★</div>
+        <div class="product-cat">Health / Wellness</div>
+        <div class="product-name">Whoop 4.0 Band</div>
+        <div class="product-desc">Track recovery, strain, and sleep 24/7. The wearable serious athletes actually use.</div>
+        <div class="product-footer">
+          <div>
+            <span class="product-price">$30/mo</span>
+          </div>
+          <a href="#" class="product-cta">Shop Deal →</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card visible" data-cat="style">
+      <div class="product-img" style="background: #181418;">👗
+        <span class="product-badge badge-new">New</span>
+      </div>
+      <div class="product-body">
+        <div class="product-stars">★★★★★</div>
+        <div class="product-cat">Fashion / Beauty</div>
+        <div class="product-name">Lunya Washable Silk Set</div>
+        <div class="product-desc">Temperature-regulating, ultra-packable, looks as luxe at the hotel as it feels.</div>
+        <div class="product-footer">
+          <div>
+            <span class="product-price">$228</span>
+          </div>
+          <a href="#" class="product-cta">Shop Deal →</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card visible" data-cat="style">
+      <div class="product-img" style="background: #181514;">🕶️
+        <span class="product-badge badge-sale">Sale</span>
+      </div>
+      <div class="product-body">
+        <div class="product-stars">★★★★★</div>
+        <div class="product-cat">Fashion / Style</div>
+        <div class="product-name">Quay Polarised Sunglasses</div>
+        <div class="product-desc">UV400 lenses, sculptural frames, protective case included. Pool to rooftop ready.</div>
+        <div class="product-footer">
+          <div>
+            <span class="product-price">$55</span>
+            <span class="product-price-orig">$75</span>
+          </div>
+          <a href="#" class="product-cta">Shop Deal →</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- WHY -->
+<section class="why" id="why">
+  <div class="section-label">Why Mr. Mo Life</div>
+  <h2 class="section-title">We only recommend<br><em>what we'd buy ourselves.</em></h2>
+  <div class="why-grid">
+    <div class="why-card">
+      <div class="why-num">01 —</div>
+      <div class="why-title">Rigorously Curated</div>
+      <div class="why-body">Every product is tested, researched, and selected against our strict criteria for quality, value, and lifestyle fit.</div>
+    </div>
+    <div class="why-card">
+      <div class="why-num">02 —</div>
+      <div class="why-title">Honest Reviews</div>
+      <div class="why-body">We call out the cons as clearly as the pros. No fluff. Just the real talk you need before you buy.</div>
+    </div>
+    <div class="why-card">
+      <div class="why-num">03 —</div>
+      <div class="why-title">Best Prices Tracked</div>
+      <div class="why-body">We monitor deals 24/7 so our links always lead to the best available price across major retailers.</div>
+    </div>
+    <div class="why-card">
+      <div class="why-num">04 —</div>
+      <div class="why-title">Community Driven</div>
+      <div class="why-body">50,000+ travelers, wellness obsessives, and style lovers share picks and reviews with our community every week.</div>
+    </div>
+  </div>
+</section>
+
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div>
+      <div class="footer-brand-name">MO LIFE</div>
+      <div class="footer-brand-desc">Life is short, so why not live it looking & feeling good. Curated picks for travelers, wellness lovers, and style seekers.</div>
+    </div>
+    <div class="footer-col">
+      <h4>Shop</h4>
+      <ul>
+        <li><a href="#">Travel & Tech</a></li>
+        <li><a href="#">Health & Wellness</a></li>
+        <li><a href="#">Fashion & Beauty</a></li>
+        <li><a href="#">All Products</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <ul>
+        <li><a href="#">About Us</a></li>
+        <li><a href="#">How We Pick</a></li>
+        <li><a href="#">Partner With Us</a></li>
+        <li><a href="#">Blog</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Legal</h4>
+      <ul>
+        <li><a href="#">Privacy Policy</a></li>
+        <li><a href="#">Terms of Use</a></li>
+        <li><a href="#">Affiliate Disclosure</a></li>
+        <li><a href="#">Cookie Policy</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-copy">© 2025 Mr. Mo Life. All rights reserved.</div>
+    <div class="footer-disc">Affiliate Disclosure: Mr. Mo Life earns a commission from qualifying purchases made through links on this site, at no extra cost to you.</div>
+  </div>
+</footer>
+
+<!-- ADMIN TRIGGER (hidden, press Shift+A or footer link) -->
+<div style="text-align:center; padding: 8px; background: var(--bg);">
+  <a href="#" onclick="openAdmin(event)" style="font-size:11px; color: var(--text-dim); text-decoration: none; letter-spacing:0.1em; font-family:'Barlow Condensed',sans-serif;">Admin</a>
+</div>
+
+<!-- LOGIN OVERLAY -->
+<div id="loginOverlay" style="display:none; position:fixed; inset:0; z-index:999; background:rgba(0,0,0,0.92); display:none; align-items:center; justify-content:center;">
+  <div style="background:#18181D; border:1px solid rgba(255,255,255,0.1); padding:48px 40px; width:100%; max-width:380px; text-align:center;">
+    <div style="font-family:'Cormorant Garamond',serif; font-size:28px; color:#C9A84C; margin-bottom:6px;">MO LIFE</div>
+    <div style="font-family:'Barlow Condensed',sans-serif; font-size:11px; letter-spacing:0.18em; text-transform:uppercase; color:#55555E; margin-bottom:32px;">Admin Access</div>
+    <input id="adminPass" type="password" placeholder="Enter password" style="width:100%; padding:13px 16px; background:#0A0A0B; border:1px solid rgba(255,255,255,0.13); color:#F0EDE8; font-family:'Barlow',sans-serif; font-size:14px; outline:none; margin-bottom:12px;" onkeydown="if(event.key==='Enter')checkPassword()"/>
+    <div id="loginError" style="color:#E8637A; font-size:12px; margin-bottom:12px; display:none;">Incorrect password. Try again.</div>
+    <button onclick="checkPassword()" style="width:100%; padding:13px; background:#C9A84C; border:none; font-family:'Barlow Condensed',sans-serif; font-size:12px; font-weight:600; letter-spacing:0.16em; text-transform:uppercase; color:#0A0A0B; cursor:pointer;">Enter</button>
+    <div style="margin-top:16px;"><a href="#" onclick="closeLogin(event)" style="font-size:12px; color:#55555E; text-decoration:none;">Cancel</a></div>
+  </div>
+</div>
+
+<!-- ADMIN PANEL -->
+<div id="adminPanel" style="display:none; position:fixed; inset:0; z-index:998; background:rgba(0,0,0,0.7); overflow-y:auto;">
+  <div style="background:#111114; min-height:100vh; max-width:860px; margin:0 auto; border-left:1px solid rgba(255,255,255,0.07); border-right:1px solid rgba(255,255,255,0.07);">
+
+    <!-- Panel Header -->
+    <div style="position:sticky; top:0; z-index:10; background:#111114; border-bottom:1px solid rgba(255,255,255,0.07); padding:0 32px; height:60px; display:flex; align-items:center; justify-content:space-between;">
+      <div style="display:flex; align-items:center; gap:16px;">
+        <span style="font-family:'Cormorant Garamond',serif; font-size:20px; color:#C9A84C;">Admin Panel</span>
+        <span style="font-family:'Barlow Condensed',sans-serif; font-size:10px; letter-spacing:0.16em; text-transform:uppercase; color:#55555E; background:#18181D; padding:3px 10px; border:1px solid rgba(255,255,255,0.07);">MO LIFE</span>
+      </div>
+      <div style="display:flex; gap:12px; align-items:center;">
+        <button onclick="exportSite()" style="padding:8px 20px; background:transparent; border:1px solid rgba(201,168,76,0.4); font-family:'Barlow Condensed',sans-serif; font-size:11px; font-weight:600; letter-spacing:0.14em; text-transform:uppercase; color:#C9A84C; cursor:pointer;">⬇ Export Site</button>
+        <button onclick="saveAllChanges()" style="padding:8px 20px; background:#C9A84C; border:none; font-family:'Barlow Condensed',sans-serif; font-size:11px; font-weight:600; letter-spacing:0.14em; text-transform:uppercase; color:#0A0A0B; cursor:pointer;">Save All</button>
+        <button onclick="closeAdmin()" style="padding:8px 20px; background:transparent; border:1px solid rgba(255,255,255,0.13); font-family:'Barlow Condensed',sans-serif; font-size:11px; letter-spacing:0.14em; text-transform:uppercase; color:#888890; cursor:pointer;">Close</button>
+      </div>
+    </div>
+
+    <!-- Panel Tabs -->
+    <div style="display:flex; border-bottom:1px solid rgba(255,255,255,0.07); padding:0 32px;">
+      <button class="atab active" onclick="switchTab('products', this)" style="font-family:'Barlow Condensed',sans-serif; font-size:12px; font-weight:600; letter-spacing:0.14em; text-transform:uppercase; padding:16px 20px; background:transparent; border:none; border-bottom:2px solid #C9A84C; color:#C9A84C; cursor:pointer;">Products</button>
+      <button class="atab" onclick="switchTab('settings', this)" style="font-family:'Barlow Condensed',sans-serif; font-size:12px; font-weight:500; letter-spacing:0.14em; text-transform:uppercase; padding:16px 20px; background:transparent; border:none; border-bottom:2px solid transparent; color:#55555E; cursor:pointer;">Site Settings</button>
+    </div>
+
+    <!-- PRODUCTS TAB -->
+    <div id="tab-products" style="padding:32px;">
+      <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:24px;">
+        <div style="font-family:'Cormorant Garamond',serif; font-size:22px; color:#F0EDE8;">Product Cards</div>
+        <button onclick="addNewProduct()" style="padding:9px 18px; background:transparent; border:1px solid rgba(255,255,255,0.13); font-family:'Barlow Condensed',sans-serif; font-size:11px; font-weight:600; letter-spacing:0.14em; text-transform:uppercase; color:#888890; cursor:pointer;">+ Add Product</button>
+      </div>
+      <div id="productEditors"></div>
+    </div>
+
+    <!-- SETTINGS TAB -->
+    <div id="tab-settings" style="padding:32px; display:none;">
+      <div style="font-family:'Cormorant Garamond',serif; font-size:22px; color:#F0EDE8; margin-bottom:24px;">Site Settings</div>
+      <div style="display:grid; gap:20px;">
+        <div>
+          <label style="font-family:'Barlow Condensed',sans-serif; font-size:11px; font-weight:600; letter-spacing:0.16em; text-transform:uppercase; color:#888890; display:block; margin-bottom:8px;">Brand Name</label>
+          <input id="set-brandname" type="text" style="width:100%; padding:11px 14px; background:#0A0A0B; border:1px solid rgba(255,255,255,0.13); color:#F0EDE8; font-family:'Barlow',sans-serif; font-size:14px; outline:none;" />
+        </div>
+        <div>
+          <label style="font-family:'Barlow Condensed',sans-serif; font-size:11px; font-weight:600; letter-spacing:0.16em; text-transform:uppercase; color:#888890; display:block; margin-bottom:8px;">Hero Catchphrase</label>
+          <input id="set-catchphrase" type="text" style="width:100%; padding:11px 14px; background:#0A0A0B; border:1px solid rgba(255,255,255,0.13); color:#F0EDE8; font-family:'Barlow',sans-serif; font-size:14px; outline:none;" />
+        </div>
+        <div>
+          <label style="font-family:'Barlow Condensed',sans-serif; font-size:11px; font-weight:600; letter-spacing:0.16em; text-transform:uppercase; color:#888890; display:block; margin-bottom:8px;">Footer Description</label>
+          <textarea id="set-footerdesc" rows="3" style="width:100%; padding:11px 14px; background:#0A0A0B; border:1px solid rgba(255,255,255,0.13); color:#F0EDE8; font-family:'Barlow',sans-serif; font-size:14px; outline:none; resize:vertical;"></textarea>
+        </div>
+        <div>
+          <label style="font-family:'Barlow Condensed',sans-serif; font-size:11px; font-weight:600; letter-spacing:0.16em; text-transform:uppercase; color:#888890; display:block; margin-bottom:8px;">Admin Password</label>
+          <input id="set-password" type="password" placeholder="Set new password" style="width:100%; padding:11px 14px; background:#0A0A0B; border:1px solid rgba(255,255,255,0.13); color:#F0EDE8; font-family:'Barlow',sans-serif; font-size:14px; outline:none;" />
+        </div>
+        <button onclick="saveSettings()" style="padding:12px 28px; background:#C9A84C; border:none; font-family:'Barlow Condensed',sans-serif; font-size:12px; font-weight:600; letter-spacing:0.16em; text-transform:uppercase; color:#0A0A0B; cursor:pointer; width:fit-content;">Save Settings</button>
+      </div>
+    </div>
+
+    <!-- Save notification -->
+    <div id="saveNotif" style="display:none; position:fixed; bottom:32px; right:32px; background:#1E8A5E; color:#fff; padding:12px 24px; font-family:'Barlow Condensed',sans-serif; font-size:12px; font-weight:600; letter-spacing:0.14em; text-transform:uppercase; z-index:9999;">Changes Saved ✓</div>
+  </div>
+</div>
+
+<script>
+  const _appConfig = '163bb4d7aeb653fd4860d26ff221ba63d8c59d550cba6cbf84da31c3c068ea99';
+
+  async function _verifyAccess(input) {
+    try {
+      const buf = new TextEncoder().encode(input + 'molife_salt_2025');
+      const out = await crypto.subtle.digest('SHA-256', buf);
+      return Array.from(new Uint8Array(out)).map(b => b.toString(16).padStart(2,'0')).join('');
+    } catch(e) {
+      let h = 0, s = input + 'molife_salt_2025';
+      for (let i = 0; i < s.length; i++) { h = Math.imul(31, h) + s.charCodeAt(i) | 0; }
+      return 'local_' + Math.abs(h).toString(16);
+    }
+  }
+
+  const _localFallback = 'local_11fff19e';
+
+  /* ── FILTER ── */
+  function filterProducts(cat, btn) {
+    document.querySelectorAll('.product-card').forEach(card => {
+      card.classList.toggle('visible', cat === 'all' || card.dataset.cat === cat);
+    });
+    if (btn) {
+      document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
+      btn.classList.add('active');
+    }
+    if (cat !== 'all') document.getElementById('featured').scrollIntoView({ behavior: 'smooth' });
+  }
+
+  /* ── LOGIN ── */
+  function openAdmin(e) { e.preventDefault(); document.getElementById('loginOverlay').style.display = 'flex'; document.getElementById('adminPass').focus(); }
+  function closeLogin(e) { e.preventDefault(); document.getElementById('loginOverlay').style.display = 'none'; document.getElementById('adminPass').value = ''; document.getElementById('loginError').style.display = 'none'; }
+  async function checkPassword() {
+    const pass = document.getElementById('adminPass').value;
+    const hashed = await _verifyAccess(pass);
+    const storedHash = localStorage.getItem('molife_hash') || (hashed.startsWith('local_') ? _localFallback : _appConfig);
+    if (hashed === storedHash) {
+      document.getElementById('loginOverlay').style.display = 'none';
+      document.getElementById('adminPass').value = '';
+      document.getElementById('loginError').style.display = 'none';
+      openAdminPanel();
+    } else {
+      document.getElementById('loginError').style.display = 'block';
+    }
+  }
+
+  /* ── ADMIN PANEL ── */
+  function openAdminPanel() {
+    document.getElementById('adminPanel').style.display = 'block';
+    document.body.style.overflow = 'hidden';
+    loadProductEditors();
+    loadSettings();
+  }
+  function closeAdmin() {
+    document.getElementById('adminPanel').style.display = 'none';
+    document.body.style.overflow = '';
+  }
+
+  function switchTab(tab, btn) {
+    document.getElementById('tab-products').style.display = tab === 'products' ? 'block' : 'none';
+    document.getElementById('tab-settings').style.display = tab === 'settings' ? 'block' : 'none';
+    document.querySelectorAll('.atab').forEach(t => {
+      t.style.borderBottomColor = 'transparent';
+      t.style.color = '#55555E';
+    });
+    btn.style.borderBottomColor = '#C9A84C';
+    btn.style.color = '#C9A84C';
+  }
+
+  const lbl = `font-family:'Barlow Condensed',sans-serif; font-size:11px; font-weight:600; letter-spacing:0.14em; text-transform:uppercase; color:#55555E; display:block; margin-bottom:6px;`;
+  const inp = `width:100%; padding:9px 12px; background:#0A0A0B; border:1px solid rgba(255,255,255,0.1); color:#F0EDE8; font-family:'Barlow',sans-serif; font-size:13px; outline:none;`;
+
+  const langMeta = [
+    { code:'fr', flag:'🇫🇷', label:'Français' },
+    { code:'es', flag:'🇪🇸', label:'Español' },
+    { code:'de', flag:'🇩🇪', label:'Deutsch' },
+    { code:'tl', flag:'🇵🇭', label:'Tagalog' },
+  ];
+
+  /* ── PRODUCT EDITORS ── */
+  function getProducts() {
+    const cards = document.querySelectorAll('.product-card');
+    return Array.from(cards).map((card, i) => ({
+      index: i,
+      emoji: card.querySelector('.product-img')?.childNodes[0]?.textContent?.trim() || '',
+      badgeClass: card.querySelector('.product-badge')?.className?.replace('product-badge ','') || 'badge-hot',
+      cat: card.dataset.cat,
+      name: card.querySelector('.product-name')?.textContent || '',
+      desc: card.querySelector('.product-desc')?.textContent || '',
+      price: card.querySelector('.product-price')?.textContent || '',
+      origPrice: card.querySelector('.product-price-orig')?.textContent || '',
+      link: card.querySelector('.product-cta')?.getAttribute('href') || '#',
+      // load stored translations from dataset
+      translations: card.dataset.translations ? JSON.parse(card.dataset.translations) : {},
+    }));
+  }
+
+  function translationFields(i, stored) {
+    return langMeta.map(l => {
+      const n = stored[l.code]?.name || '';
+      const d = stored[l.code]?.desc || '';
+      return `
+        <div style="grid-column:1/-1; border:1px solid rgba(255,255,255,0.05); padding:14px; margin-top:4px;">
+          <div style="font-family:'Barlow Condensed',sans-serif; font-size:11px; font-weight:600; letter-spacing:0.14em; text-transform:uppercase; color:#C9A84C; margin-bottom:12px; display:flex; align-items:center; gap:6px;">
+            <span>${l.flag}</span> ${l.label}
+          </div>
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">
+            <div>
+              <label style="${lbl}">Name (${l.label})</label>
+              <input data-trans="${l.code}-name" type="text" value="${n.replace(/"/g,'&quot;')}" placeholder="Translated name..." style="${inp}" />
+            </div>
+            <div>
+              <label style="${lbl}">Description (${l.label})</label>
+              <input data-trans="${l.code}-desc" type="text" value="${d.replace(/"/g,'&quot;')}" placeholder="Translated description..." style="${inp}" />
+            </div>
+          </div>
+        </div>`;
+    }).join('');
+  }
+
+  function loadProductEditors() {
+    const products = getProducts();
+    const container = document.getElementById('productEditors');
+    container.innerHTML = '';
+    products.forEach((p, i) => {
+      const el = document.createElement('div');
+      el.style.cssText = 'background:#18181D; border:1px solid rgba(255,255,255,0.07); padding:24px; margin-bottom:16px;';
+      el.dataset.productIndex = i;
+      el.innerHTML = `
+        <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:20px;">
+          <div style="display:flex; align-items:center; gap:12px;">
+            <span style="font-size:28px;">${p.emoji}</span>
+            <span style="font-family:'Cormorant Garamond',serif; font-size:18px; color:#F0EDE8;">${p.name}</span>
+          </div>
+          <button onclick="removeProduct(${i})" style="padding:6px 14px; background:transparent; border:1px solid rgba(232,99,122,0.3); font-family:'Barlow Condensed',sans-serif; font-size:10px; letter-spacing:0.14em; text-transform:uppercase; color:#E8637A; cursor:pointer;">Remove</button>
+        </div>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:14px;">
+          <div>
+            <label style="${lbl}">Product Name (English)</label>
+            <input data-field="name" type="text" value="${p.name.replace(/"/g,'&quot;')}" style="${inp}" />
+          </div>
+          <div>
+            <label style="${lbl}">Category</label>
+            <select data-field="cat" style="${inp}">
+              <option value="travel" ${p.cat==='travel'?'selected':''}>Travel</option>
+              <option value="wellness" ${p.cat==='wellness'?'selected':''}>Wellness</option>
+              <option value="style" ${p.cat==='style'?'selected':''}>Style</option>
+            </select>
+          </div>
+          <div>
+            <label style="${lbl}">Price</label>
+            <input data-field="price" type="text" value="${p.price.replace(/"/g,'&quot;')}" style="${inp}" />
+          </div>
+          <div>
+            <label style="${lbl}">Original Price (optional)</label>
+            <input data-field="origPrice" type="text" value="${p.origPrice.replace(/"/g,'&quot;')}" placeholder="e.g. $399" style="${inp}" />
+          </div>
+          <div>
+            <label style="${lbl}">Badge</label>
+            <select data-field="badgeClass" style="${inp}">
+              <option value="badge-hot" ${p.badgeClass==='badge-hot'?'selected':''}>Hot</option>
+              <option value="badge-new" ${p.badgeClass==='badge-new'?'selected':''}>New</option>
+              <option value="badge-sale" ${p.badgeClass==='badge-sale'?'selected':''}>Sale</option>
+            </select>
+          </div>
+          <div>
+            <label style="${lbl}">Emoji Icon</label>
+            <input data-field="emoji" type="text" value="${p.emoji}" style="${inp}" />
+          </div>
+          <div style="grid-column:1/-1;">
+            <label style="${lbl}">Description (English)</label>
+            <textarea data-field="desc" rows="2" style="${inp} resize:vertical;">${p.desc}</textarea>
+          </div>
+          <div style="grid-column:1/-1;">
+            <label style="${lbl}">Affiliate Link</label>
+            <input data-field="link" type="url" value="${p.link === '#' ? '' : p.link}" placeholder="https://amazon.com/..." style="${inp}" />
+          </div>
+
+          <!-- TRANSLATION DIVIDER -->
+          <div style="grid-column:1/-1; border-top:1px solid rgba(255,255,255,0.06); padding-top:16px; margin-top:4px;">
+            <button onclick="toggleTranslations(this)" style="font-family:'Barlow Condensed',sans-serif; font-size:11px; font-weight:600; letter-spacing:0.14em; text-transform:uppercase; color:#888890; background:transparent; border:1px solid rgba(255,255,255,0.1); padding:7px 14px; cursor:pointer; width:100%; text-align:left;">
+              🌍 Translations (FR / ES / DE / TL) — click to expand
+            </button>
+            <div class="trans-fields" style="display:none; margin-top:12px; display:none;">
+              ${translationFields(i, p.translations)}
+            </div>
+          </div>
+        </div>`;
+      container.appendChild(el);
+    });
+  }
+
+  function toggleTranslations(btn) {
+    const fields = btn.nextElementSibling;
+    const open = fields.style.display !== 'none';
+    fields.style.display = open ? 'none' : 'block';
+    btn.textContent = open
+      ? '🌍 Translations (FR / ES / DE / TL) — click to expand'
+      : '🌍 Translations (FR / ES / DE / TL) — click to collapse';
+  }
+
+  function saveAllChanges() {
+    const editors = document.querySelectorAll('#productEditors > div[data-product-index]');
+    const cards = document.querySelectorAll('.product-card');
+
+    editors.forEach((editor, i) => {
+      const card = cards[i];
+      if (!card) return;
+      const get = (f) => editor.querySelector(`[data-field="${f}"]`)?.value || '';
+      const getTrans = (code, field) => editor.querySelector(`[data-trans="${code}-${field}"]`)?.value || '';
+
+      // Save English content
+      card.querySelector('.product-name').textContent = get('name');
+      card.querySelector('.product-desc').textContent = get('desc');
+      card.querySelector('.product-cat').textContent = get('cat') === 'travel' ? 'Travel / Tech' : get('cat') === 'wellness' ? 'Health / Wellness' : 'Fashion / Style';
+      card.dataset.cat = get('cat');
+
+      const priceEl = card.querySelector('.product-price');
+      if (priceEl) { priceEl.textContent = get('price'); const raw = get('price').replace(/[^0-9.]/g,''); if(raw) priceEl.dataset.usd = raw; }
+
+      const origEl = card.querySelector('.product-price-orig');
+      if (origEl) { origEl.textContent = get('origPrice'); const raw = get('origPrice').replace(/[^0-9.]/g,''); if(raw) origEl.dataset.usd = raw; }
+
+      const ctaEl = card.querySelector('.product-cta');
+      if (ctaEl) ctaEl.href = get('link') || '#';
+
+      const imgDiv = card.querySelector('.product-img');
+      if (imgDiv) {
+        const badge = imgDiv.querySelector('.product-badge');
+        imgDiv.childNodes[0].textContent = get('emoji') + '\n        ';
+        if (badge) {
+          badge.className = 'product-badge ' + get('badgeClass');
+          badge.textContent = get('badgeClass') === 'badge-hot' ? 'Hot' : get('badgeClass') === 'badge-new' ? 'New' : 'Sale';
+        }
+      }
+
+      // Save translations into card dataset
+      const trans = {};
+      langMeta.forEach(l => {
+        const n = getTrans(l.code, 'name');
+        const d = getTrans(l.code, 'desc');
+        if (n || d) trans[l.code] = { name: n, desc: d };
+      });
+      card.dataset.translations = JSON.stringify(trans);
+    });
+
+    // Re-apply current language so translated text shows immediately
+    applyTranslations();
+    showSaved();
+    loadProductEditors();
+  }
+
+  function removeProduct(i) {
+    if (!confirm('Remove this product?')) return;
+    const cards = document.querySelectorAll('.product-card');
+    if (cards[i]) cards[i].remove();
+    loadProductEditors();
+  }
+
+  function addNewProduct() {
+    const grid = document.getElementById('productsGrid');
+    const newCard = document.createElement('div');
+    newCard.className = 'product-card visible';
+    newCard.dataset.cat = 'travel';
+    newCard.dataset.translations = '{}';
+    newCard.innerHTML = `
+      <div class="product-img" style="background:#141420;">🛍️
+        <span class="product-badge badge-new">New</span>
+      </div>
+      <div class="product-body">
+        <div class="product-stars">★★★★★</div>
+        <div class="product-cat">Travel / Tech</div>
+        <div class="product-name">New Product</div>
+        <div class="product-desc">Add your product description here.</div>
+        <div class="product-footer">
+          <div>
+            <span class="product-price">$0</span>
+            <span class="product-price-orig"></span>
+          </div>
+          <a href="#" class="product-cta">Shop Deal →</a>
+        </div>
+      </div>`;
+    grid.appendChild(newCard);
+    loadProductEditors();
+    document.getElementById('productEditors').lastElementChild?.scrollIntoView({ behavior: 'smooth' });
+  }
+
+  /* ── SETTINGS ── */
+  function loadSettings() {
+    document.getElementById('set-brandname').value = document.querySelector('.nav-logo')?.textContent || 'MO LIFE';
+    document.getElementById('set-catchphrase').value = document.querySelector('.hero-sub')?.textContent || '';
+    document.getElementById('set-footerdesc').value = document.querySelector('.footer-brand-desc')?.textContent || '';
+  }
+
+  async function saveSettings() {
+    const brand = document.getElementById('set-brandname').value;
+    const catchphrase = document.getElementById('set-catchphrase').value;
+    const footerDesc = document.getElementById('set-footerdesc').value;
+    const newPass = document.getElementById('set-password').value;
+
+    document.querySelectorAll('.nav-logo, .footer-brand-name').forEach(el => el.textContent = brand);
+    const heroSub = document.querySelector('.hero-sub');
+    if (heroSub) heroSub.textContent = catchphrase;
+    const footerBrandDesc = document.querySelector('.footer-brand-desc');
+    if (footerBrandDesc) footerBrandDesc.textContent = footerDesc;
+
+    if (newPass) {
+      const hashed = await _verifyAccess(newPass);
+      localStorage.setItem('molife_hash', hashed);
+      document.getElementById('set-password').value = '';
+    }
+    showSaved();
+  }
+
+  function exportSite() {
+    // First save all current changes into the DOM
+    saveAllChanges();
+
+    setTimeout(() => {
+      // Grab the full current HTML
+      const doctype = '<!DOCTYPE html>\n';
+      const html = document.documentElement.cloneNode(true);
+
+      // Remove admin panel, login overlay, admin trigger from export
+      ['adminPanel', 'loginOverlay'].forEach(id => {
+        const el = html.querySelector('#' + id);
+        if (el) el.remove();
+      });
+
+      // Remove the admin trigger div (the small "Admin" link at the bottom)
+      html.querySelectorAll('div').forEach(div => {
+        if (div.textContent.trim() === 'Admin' && div.style.textAlign === 'center') div.remove();
+      });
+
+      // Serialize and trigger download
+      const blob = new Blob([doctype + html.outerHTML], { type: 'text/html' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'index.html';
+      a.click();
+      URL.revokeObjectURL(url);
+
+      showSaved();
+    }, 400);
+  }
+
+
+  function showSaved() {
+    const n = document.getElementById('saveNotif');
+    n.style.display = 'block';
+    setTimeout(() => n.style.display = 'none', 2500);
+  }
+
+  /* ── KEYBOARD SHORTCUT ── */
+  document.addEventListener('keydown', e => {
+    if (e.shiftKey && e.key === 'A') openAdmin({ preventDefault: () => {} });
+    if (e.key === 'Escape') { closeAdmin(); closeLogin({ preventDefault: () => {} }); }
+  });
+</script>
+
+<script>
+  /* ── TRANSLATIONS ── */
+  const translations = {
+    en: {
+      nav_shop: 'Shop', nav_picks: 'Top Picks', nav_about: 'About', nav_newsletter: 'Newsletter', nav_cta: 'Shop Now',
+      hero_eyebrow: 'Mr. Mo Life',
+      hero_sub: 'Feel your best to live your best.',
+      hero_stat1: 'Curated Products', hero_stat2: 'Happy Customers', hero_stat3: 'Average Rating', hero_stat4: 'Fast Shipping',
+      cat_label: 'Shop by Lifestyle', cat_title1: 'Your world,', cat_title2: 'fully equipped.',
+      cat1_tag: 'Travel & Tech', cat1_name: 'The Nomad<br>Collection', cat1_desc: 'Gear that keeps up — noise-cancelling, packable, and always ready for the next flight.',
+      cat2_tag: 'Health & Wellness', cat2_name: 'The Vitality<br>Edit', cat2_desc: 'From recovery to performance — the essentials that keep you at your best wherever you are.',
+      cat3_tag: 'Fashion & Beauty', cat3_name: 'The Style<br>Arsenal', cat3_desc: 'Look the part at altitude, poolside, or the after-party. Effortless luxury for every scene.',
+      prod_label: 'Hand-Picked Picks', prod_title1: "This week's", prod_title2: 'top finds.',
+      filter_all: 'All', filter_travel: 'Travel', filter_wellness: 'Wellness', filter_style: 'Style',
+      shop_deal: 'Shop Deal →',
+      why_label: 'Why Mo Life', why_title1: 'We only recommend', why_title2: "what we'd buy ourselves.",
+      why1_title: 'Rigorously Curated', why1_body: 'Every product is tested, researched, and selected against our strict criteria for quality, value, and lifestyle fit.',
+      why2_title: 'Honest Reviews', why2_body: 'We call out the cons as clearly as the pros. No fluff. Just the real talk you need before you buy.',
+      why3_title: 'Best Prices Tracked', why3_body: 'We monitor deals 24/7 so our links always lead to the best available price across major retailers.',
+      why4_title: 'Community Driven', why4_body: '50,000+ travelers, wellness obsessives, and style lovers share picks and reviews with our community every week.',
+      news_title1: 'Get the', news_title2: 'weekly drop.', news_body: 'New deals, hidden gems, and curated picks — straight to your inbox every Thursday.',
+      news_btn: 'Subscribe', news_placeholder: 'your@email.com',
+    },
+    fr: {
+      nav_shop: 'Boutique', nav_picks: 'Sélection', nav_about: 'À Propos', nav_newsletter: 'Newsletter', nav_cta: 'Acheter',
+      hero_eyebrow: 'Mr. Mo Life',
+      hero_sub: 'Sentez-vous au mieux pour vivre au mieux.',
+      hero_stat1: 'Produits Sélectionnés', hero_stat2: 'Clients Satisfaits', hero_stat3: 'Note Moyenne', hero_stat4: 'Livraison Rapide',
+      cat_label: 'Boutique par Style', cat_title1: 'Votre monde,', cat_title2: 'pleinement équipé.',
+      cat1_tag: 'Voyage & Tech', cat1_name: 'La Collection<br>Nomade', cat1_desc: 'Des équipements qui suivent — antibruit, compacts, toujours prêts pour le prochain vol.',
+      cat2_tag: 'Santé & Bien-être', cat2_name: "L'Edit<br>Vitalité", cat2_desc: 'De la récupération à la performance — les essentiels pour rester au top partout.',
+      cat3_tag: 'Mode & Beauté', cat3_name: "L'Arsenal<br>Style", cat3_desc: "Soyez à la hauteur en altitude, au bord de la piscine ou à l'after-party.",
+      prod_label: 'Sélection de la Semaine', prod_title1: 'Les meilleures', prod_title2: 'trouvailles.',
+      filter_all: 'Tout', filter_travel: 'Voyage', filter_wellness: 'Bien-être', filter_style: 'Style',
+      shop_deal: 'Voir le Deal →',
+      why_label: 'Pourquoi Mo Life', why_title1: 'Nous recommandons seulement', why_title2: 'ce que nous achèterions nous-mêmes.',
+      why1_title: 'Rigoureusement Sélectionné', why1_body: 'Chaque produit est testé, étudié et sélectionné selon nos critères stricts de qualité et de valeur.',
+      why2_title: 'Avis Honnêtes', why2_body: 'Nous exposons les inconvénients aussi clairement que les avantages. Pas de fioriture.',
+      why3_title: 'Meilleurs Prix Suivis', why3_body: 'Nous surveillons les offres 24h/24 pour que nos liens mènent toujours au meilleur prix disponible.',
+      why4_title: 'Axé sur la Communauté', why4_body: 'Plus de 50 000 voyageurs, passionnés de bien-être et amateurs de style partagent leurs trouvailles chaque semaine.',
+      news_title1: 'Recevez le', news_title2: 'résumé hebdo.', news_body: 'Nouvelles offres, pépites cachées et sélections — dans votre boîte chaque jeudi.',
+      news_btn: "S'abonner", news_placeholder: 'votre@email.com',
+    },
+    es: {
+      nav_shop: 'Tienda', nav_picks: 'Lo Mejor', nav_about: 'Nosotros', nav_newsletter: 'Newsletter', nav_cta: 'Comprar',
+      hero_eyebrow: 'Mr. Mo Life',
+      hero_sub: 'Siéntete mejor para vivir mejor.',
+      hero_stat1: 'Productos Seleccionados', hero_stat2: 'Clientes Felices', hero_stat3: 'Calificación Media', hero_stat4: 'Envío Rápido',
+      cat_label: 'Comprar por Estilo', cat_title1: 'Tu mundo,', cat_title2: 'completamente equipado.',
+      cat1_tag: 'Viaje & Tecnología', cat1_name: 'La Colección<br>Nómada', cat1_desc: 'Equipo que sigue el ritmo — cancelación de ruido, compacto y listo para el próximo vuelo.',
+      cat2_tag: 'Salud & Bienestar', cat2_name: 'La Edición<br>Vitalidad', cat2_desc: 'De la recuperación al rendimiento — los esenciales para estar en tu mejor momento.',
+      cat3_tag: 'Moda & Belleza', cat3_name: 'El Arsenal<br>de Estilo', cat3_desc: 'Luce increíble en altitud, junto a la piscina o en la fiesta. Lujo sin esfuerzo.',
+      prod_label: 'Selección Semanal', prod_title1: 'Los mejores', prod_title2: 'descubrimientos.',
+      filter_all: 'Todo', filter_travel: 'Viaje', filter_wellness: 'Bienestar', filter_style: 'Estilo',
+      shop_deal: 'Ver Oferta →',
+      why_label: 'Por Qué Mo Life', why_title1: 'Solo recomendamos', why_title2: 'lo que compraríamos nosotros mismos.',
+      why1_title: 'Rigurosamente Seleccionado', why1_body: 'Cada producto se prueba, investiga y selecciona según nuestros estrictos criterios de calidad y valor.',
+      why2_title: 'Reseñas Honestas', why2_body: 'Señalamos los contras tan claramente como los pros. Sin relleno. Solo la verdad.',
+      why3_title: 'Mejores Precios Rastreados', why3_body: 'Monitoreamos ofertas 24/7 para que nuestros enlaces siempre lleven al mejor precio disponible.',
+      why4_title: 'Impulsado por la Comunidad', why4_body: 'Más de 50.000 viajeros, apasionados del bienestar y amantes del estilo comparten sus favoritos cada semana.',
+      news_title1: 'Recibe el', news_title2: 'resumen semanal.', news_body: 'Nuevas ofertas, joyas ocultas y selecciones — directo a tu bandeja cada jueves.',
+      news_btn: 'Suscribirse', news_placeholder: 'tu@email.com',
+    },
+    de: {
+      nav_shop: 'Shop', nav_picks: 'Top Auswahl', nav_about: 'Über uns', nav_newsletter: 'Newsletter', nav_cta: 'Jetzt kaufen',
+      hero_eyebrow: 'Mr. Mo Life',
+      hero_sub: 'Fühl dich am besten, um das Beste zu leben.',
+      hero_stat1: 'Kuratierte Produkte', hero_stat2: 'Zufriedene Kunden', hero_stat3: 'Durchschnittsbewertung', hero_stat4: 'Schneller Versand',
+      cat_label: 'Nach Lebensstil shoppen', cat_title1: 'Deine Welt,', cat_title2: 'vollständig ausgestattet.',
+      cat1_tag: 'Reise & Technik', cat1_name: 'Die Nomaden-<br>Kollektion', cat1_desc: 'Ausrüstung, die mithält — geräuschunterdrückend, packbar und immer bereit für den nächsten Flug.',
+      cat2_tag: 'Gesundheit & Wellness', cat2_name: 'Das Vitalitäts-<br>Edit', cat2_desc: 'Von der Erholung bis zur Leistung — das Wesentliche, um überall in Bestform zu bleiben.',
+      cat3_tag: 'Mode & Beauty', cat3_name: 'Das Stil-<br>Arsenal', cat3_desc: 'Sehe großartig aus auf jeder Höhe, am Pool oder auf der After-Party. Müheloser Luxus.',
+      prod_label: 'Handverlesene Auswahl', prod_title1: 'Die besten', prod_title2: 'Funde dieser Woche.',
+      filter_all: 'Alle', filter_travel: 'Reise', filter_wellness: 'Wellness', filter_style: 'Stil',
+      shop_deal: 'Deal ansehen →',
+      why_label: 'Warum Mo Life', why_title1: 'Wir empfehlen nur,', why_title2: 'was wir selbst kaufen würden.',
+      why1_title: 'Streng Kuratiert', why1_body: 'Jedes Produkt wird getestet, recherchiert und nach unseren strengen Kriterien für Qualität und Wert ausgewählt.',
+      why2_title: 'Ehrliche Bewertungen', why2_body: 'Wir nennen die Nachteile genauso klar wie die Vorteile. Kein Schnickschnack. Nur echte Infos.',
+      why3_title: 'Beste Preise Verfolgt', why3_body: 'Wir überwachen Angebote rund um die Uhr, damit unsere Links immer zum besten verfügbaren Preis führen.',
+      why4_title: 'Community-Getrieben', why4_body: 'Über 50.000 Reisende, Wellness-Begeisterte und Stilliebhaber teilen jede Woche ihre Favoriten.',
+      news_title1: 'Hol dir den', news_title2: 'wöchentlichen Drop.', news_body: 'Neue Deals, versteckte Perlen und kuratierte Picks — jeden Donnerstag in deinen Posteingang.',
+      news_btn: 'Abonnieren', news_placeholder: 'deine@email.com',
+    },
+    tl: {
+      nav_shop: 'Tindahan', nav_picks: 'Pinakamahusay', nav_about: 'Tungkol', nav_newsletter: 'Balita', nav_cta: 'Mamili',
+      hero_eyebrow: 'Mr. Mo Life',
+      hero_sub: 'Maramdaman ang pinakamahusay para mabuhay nang pinakamahusay.',
+      hero_stat1: 'Mga Piling Produkto', hero_stat2: 'Masasayang Customer', hero_stat3: 'Karaniwang Rating', hero_stat4: 'Mabilis na Pagpapadala',
+      cat_label: 'Mamili Ayon sa Lifestyle', cat_title1: 'Ang iyong mundo,', cat_title2: 'ganap na handa.',
+      cat1_tag: 'Paglalakbay & Tech', cat1_name: 'Ang Nomad<br>Koleksyon', cat1_desc: 'Kagamitan na nakakasabay — noise-cancelling, madaling dalhin, laging handa para sa susunod na lipad.',
+      cat2_tag: 'Kalusugan & Wellness', cat2_name: 'Ang Vitality<br>Edit', cat2_desc: 'Mula sa pahinga hanggang sa pagganap — ang mga esensyal para lagi kang nasa pinakamahusay.',
+      cat3_tag: 'Fashion & Beauty', cat3_name: 'Ang Style<br>Arsenal', cat3_desc: 'Magmukhang kahanga-hanga sa ere, sa pool, o sa pagdiriwang. Walang kahirap-hirap na luho.',
+      prod_label: 'Piling Picks ng Linggo', prod_title1: 'Mga pinakamahusay', prod_title2: 'na natuklasan.',
+      filter_all: 'Lahat', filter_travel: 'Paglalakbay', filter_wellness: 'Wellness', filter_style: 'Estilo',
+      shop_deal: 'Tingnan ang Deal →',
+      why_label: 'Bakit Mo Life', why_title1: 'Inirerekomenda lamang namin', why_title2: 'ang bibilhin namin para sa aming sarili.',
+      why1_title: 'Mahigpit na Pinili', why1_body: 'Bawat produkto ay sinubukan, sinaliksik, at pinili ayon sa aming mahigpit na pamantayan para sa kalidad at halaga.',
+      why2_title: 'Tapat na Pagsusuri', why2_body: 'Tinutukoy namin ang mga kahinaan nang kasing linaw ng mga kalakasan. Walang palakpak. Tunay na impormasyon.',
+      why3_title: 'Pinakamababang Presyo', why3_body: 'Sinisigurado namin na ang aming mga link ay palaging nagdadala sa pinakamababang presyong available.',
+      why4_title: 'Pinapatakbo ng Komunidad', why4_body: 'Mahigit 50,000 manlalakbay, wellness enthusiast, at mga mahilig sa estilo ang nagbabahagi ng kanilang mga paboritong linggu-linggo.',
+      news_title1: 'Kunin ang', news_title2: 'lingguhang balita.', news_body: 'Mga bagong deal, nakatagong hiyas, at piling picks — direkta sa iyong inbox tuwing Huwebes.',
+      news_btn: 'Mag-subscribe', news_placeholder: 'ikaw@email.com',
+    }
+  };
+
+  /* ── extend translations with missing keys ── */
+  const extraKeys = {
+    en: {
+      hero_h1: 'Live <em>Bold.</em><br>Travel Far.<br>Feel Good.',
+      hero_btn1: 'Explore Products', hero_btn2: 'Browse Categories',
+      cat_title: 'Your world,<br><em>fully equipped.</em>',
+      cat1_name: 'The Nomad<br>Collection', cat2_name: 'The Vitality<br>Edit', cat3_name: 'The Style<br>Arsenal',
+      prod_section_title: "This week's<br><em>top finds.</em>",
+      p1_cat:'Travel / Tech', p1_name:'Sony WH-1000XM5 Headphones', p1_desc:'Industry-leading noise cancellation. 30hr battery. Foldable for carry-on perfection.',
+      p2_cat:'Travel / Tech', p2_name:'Anker 27W MagSafe Power Bank', p2_desc:'Slim, airport-safe, mag-snaps to your phone. Never hunt for an outlet again.',
+      p3_cat:'Health / Wellness', p3_name:'AG1 Daily Greens Bundle', p3_desc:'75 vitamins, minerals, and whole-food sourced nutrients. One scoop covers your baseline.',
+      p4_cat:'Health / Wellness', p4_name:'Whoop 4.0 Band', p4_desc:'Track recovery, strain, and sleep 24/7. The wearable serious athletes actually use.',
+      p5_cat:'Fashion / Beauty', p5_name:'Lunya Washable Silk Set', p5_desc:'Temperature-regulating, ultra-packable, looks as luxe at the hotel as it feels.',
+      p6_cat:'Fashion / Style', p6_name:'Quay Polarised Sunglasses', p6_desc:'UV400 lenses, sculptural frames, protective case included. Pool to rooftop ready.',
+      badge_hot:'Hot', badge_new:'New', badge_sale:'Sale',
+      why_section_title: "We only recommend<br><em>what we'd buy ourselves.</em>",
+      news_h2: 'Get the <em>weekly drop.</em>', news_p: 'New deals, hidden gems, and curated picks — straight to your inbox every Thursday.',
+      footer_desc: 'Life is short, so why not live it looking & feeling good. Curated picks for travelers, wellness lovers, and style seekers.',
+      footer_shop:'Shop', footer_company:'Company', footer_legal:'Legal',
+      footer_s1:'Travel & Tech', footer_s2:'Health & Wellness', footer_s3:'Fashion & Beauty', footer_s4:'All Products',
+      footer_c1:'About Us', footer_c2:'How We Pick', footer_c3:'Partner With Us', footer_c4:'Blog',
+      footer_l1:'Privacy Policy', footer_l2:'Terms of Use', footer_l3:'Affiliate Disclosure', footer_l4:'Cookie Policy',
+      footer_copy:'© 2025 Mo Life. All rights reserved.',
+      footer_disc:'Affiliate Disclosure: Mo Life earns a commission from qualifying purchases made through links on this site, at no extra cost to you.',
+    },
+    fr: {
+      hero_h1: 'Vivez <em>Pleinement.</em><br>Voyagez Loin.<br>Sentez-vous Bien.',
+      hero_btn1: 'Explorer les Produits', hero_btn2: 'Parcourir les Catégories',
+      cat_title: 'Votre monde,<br><em>pleinement équipé.</em>',
+      cat1_name: 'La Collection<br>Nomade', cat2_name: "L'Edit<br>Vitalité", cat3_name: "L'Arsenal<br>Style",
+      prod_section_title: 'Les meilleures<br><em>trouvailles.</em>',
+      p1_cat:'Voyage / Tech', p1_name:'Sony WH-1000XM5 Casque', p1_desc:'Réduction de bruit leader. 30h de batterie. Pliable pour un transport parfait en cabine.',
+      p2_cat:'Voyage / Tech', p2_name:'Anker 27W MagSafe Power Bank', p2_desc:'Slim, approuvé aéroport, se fixe magnétiquement à votre téléphone. Fini la chasse aux prises.',
+      p3_cat:'Santé / Bien-être', p3_name:'AG1 Pack Greens Quotidien', p3_desc:'75 vitamines, minéraux et nutriments. Une cuillère couvre vos besoins de base.',
+      p4_cat:'Santé / Bien-être', p4_name:'Bracelet Whoop 4.0', p4_desc:'Suivez récupération, effort et sommeil 24h/24. Le wearable que les vrais athlètes utilisent.',
+      p5_cat:'Mode / Beauté', p5_name:'Ensemble Soie Lavable Lunya', p5_desc:'Régulation thermique, ultra compact, aussi luxueux à l\'hôtel qu\'il est confortable.',
+      p6_cat:'Mode / Style', p6_name:'Lunettes Polarisées Quay', p6_desc:'Verres UV400, montures sculpturales, étui inclus. De la piscine au rooftop.',
+      badge_hot:'Tendance', badge_new:'Nouveau', badge_sale:'Promo',
+      why_section_title: 'Nous recommandons seulement<br><em>ce que nous achèterions nous-mêmes.</em>',
+      news_h2: 'Recevez le <em>résumé hebdo.</em>', news_p: 'Nouvelles offres, pépites cachées et sélections — dans votre boîte chaque jeudi.',
+      footer_desc: 'La vie est courte, alors pourquoi ne pas la vivre en étant beau et en bonne santé. Sélections pour voyageurs, amateurs de bien-être et de style.',
+      footer_shop:'Boutique', footer_company:'Entreprise', footer_legal:'Légal',
+      footer_s1:'Voyage & Tech', footer_s2:'Santé & Bien-être', footer_s3:'Mode & Beauté', footer_s4:'Tous les Produits',
+      footer_c1:'À Propos', footer_c2:'Notre Sélection', footer_c3:'Partenariat', footer_c4:'Blog',
+      footer_l1:'Politique de Confidentialité', footer_l2:'Conditions d\'Utilisation', footer_l3:'Divulgation Affiliés', footer_l4:'Politique Cookies',
+      footer_copy:'© 2025 Mo Life. Tous droits réservés.',
+      footer_disc:'Divulgation affilié : Mo Life perçoit une commission sur les achats qualifiés effectués via les liens de ce site, sans frais supplémentaires pour vous.',
+    },
+    es: {
+      hero_h1: 'Vive <em>Audaz.</em><br>Viaja Lejos.<br>Siéntete Bien.',
+      hero_btn1: 'Explorar Productos', hero_btn2: 'Ver Categorías',
+      cat_title: 'Tu mundo,<br><em>completamente equipado.</em>',
+      cat1_name: 'La Colección<br>Nómada', cat2_name: 'La Edición<br>Vitalidad', cat3_name: 'El Arsenal<br>de Estilo',
+      prod_section_title: 'Los mejores<br><em>descubrimientos.</em>',
+      p1_cat:'Viaje / Tecnología', p1_name:'Auriculares Sony WH-1000XM5', p1_desc:'Cancelación de ruido líder. 30h de batería. Plegable para perfección en cabina.',
+      p2_cat:'Viaje / Tecnología', p2_name:'Anker 27W MagSafe Power Bank', p2_desc:'Delgado, aprobado en aeropuerto, se adhiere magnéticamente a tu teléfono.',
+      p3_cat:'Salud / Bienestar', p3_name:'AG1 Pack de Verdes Diario', p3_desc:'75 vitaminas, minerales y nutrientes. Un scoop cubre tu base diaria.',
+      p4_cat:'Salud / Bienestar', p4_name:'Banda Whoop 4.0', p4_desc:'Monitorea recuperación, esfuerzo y sueño 24/7. El wearable que los atletas usan.',
+      p5_cat:'Moda / Belleza', p5_name:'Conjunto de Seda Lavable Lunya', p5_desc:'Regulación de temperatura, ultra compacto, tan lujoso en el hotel como cómodo.',
+      p6_cat:'Moda / Estilo', p6_name:'Gafas Polarizadas Quay', p6_desc:'Lentes UV400, marcos esculturales, estuche incluido. De la piscina al rooftop.',
+      badge_hot:'Popular', badge_new:'Nuevo', badge_sale:'Oferta',
+      why_section_title: 'Solo recomendamos<br><em>lo que compraríamos nosotros mismos.</em>',
+      news_h2: 'Recibe el <em>resumen semanal.</em>', news_p: 'Nuevas ofertas, joyas ocultas y selecciones — directo a tu bandeja cada jueves.',
+      footer_desc: 'La vida es corta, ¿por qué no vivirla luciendo y sintiéndose bien? Picks para viajeros, amantes del bienestar y del estilo.',
+      footer_shop:'Tienda', footer_company:'Empresa', footer_legal:'Legal',
+      footer_s1:'Viaje & Tecnología', footer_s2:'Salud & Bienestar', footer_s3:'Moda & Belleza', footer_s4:'Todos los Productos',
+      footer_c1:'Sobre Nosotros', footer_c2:'Cómo Elegimos', footer_c3:'Asóciate', footer_c4:'Blog',
+      footer_l1:'Política de Privacidad', footer_l2:'Términos de Uso', footer_l3:'Divulgación de Afiliados', footer_l4:'Política de Cookies',
+      footer_copy:'© 2025 Mo Life. Todos los derechos reservados.',
+      footer_disc:'Divulgación de afiliados: Mo Life gana una comisión por compras calificadas realizadas a través de los enlaces de este sitio, sin costo adicional para ti.',
+    },
+    de: {
+      hero_h1: 'Lebe <em>Kühn.</em><br>Reise Weit.<br>Fühl dich Gut.',
+      hero_btn1: 'Produkte Entdecken', hero_btn2: 'Kategorien Ansehen',
+      cat_title: 'Deine Welt,<br><em>vollständig ausgestattet.</em>',
+      cat1_name: 'Die Nomaden-<br>Kollektion', cat2_name: 'Das Vitalitäts-<br>Edit', cat3_name: 'Das Stil-<br>Arsenal',
+      prod_section_title: 'Die besten<br><em>Funde dieser Woche.</em>',
+      p1_cat:'Reise / Technik', p1_name:'Sony WH-1000XM5 Kopfhörer', p1_desc:'Branchenführende Geräuschunterdrückung. 30h Akku. Faltbar für perfektes Handgepäck.',
+      p2_cat:'Reise / Technik', p2_name:'Anker 27W MagSafe Powerbank', p2_desc:'Schlank, flughafensicher, haftet magnetisch am Handy. Nie wieder Steckdosen suchen.',
+      p3_cat:'Gesundheit / Wellness', p3_name:'AG1 Tägliches Grünes Paket', p3_desc:'75 Vitamine, Mineralstoffe und Nährstoffe. Ein Löffel deckt deinen täglichen Bedarf.',
+      p4_cat:'Gesundheit / Wellness', p4_name:'Whoop 4.0 Band', p4_desc:'Verfolge Erholung, Belastung und Schlaf rund um die Uhr. Das Wearable echter Athleten.',
+      p5_cat:'Mode / Beauty', p5_name:'Lunya Waschbares Seidenset', p5_desc:'Temperaturregulierend, ultra kompakt, genauso luxuriös im Hotel wie es sich anfühlt.',
+      p6_cat:'Mode / Stil', p6_name:'Quay Polarisierte Sonnenbrille', p6_desc:'UV400-Gläser, skulpturale Fassungen, Etui inklusive. Vom Pool bis zur Rooftop-Bar.',
+      badge_hot:'Beliebt', badge_new:'Neu', badge_sale:'Sale',
+      why_section_title: 'Wir empfehlen nur,<br><em>was wir selbst kaufen würden.</em>',
+      news_h2: 'Hol dir den <em>wöchentlichen Drop.</em>', news_p: 'Neue Deals, versteckte Perlen und kuratierte Picks — jeden Donnerstag in deinen Posteingang.',
+      footer_desc: 'Das Leben ist kurz – warum es nicht gut aussehend und fühlend leben? Picks für Reisende, Wellness-Liebhaber und Stilbewusste.',
+      footer_shop:'Shop', footer_company:'Unternehmen', footer_legal:'Rechtliches',
+      footer_s1:'Reise & Technik', footer_s2:'Gesundheit & Wellness', footer_s3:'Mode & Beauty', footer_s4:'Alle Produkte',
+      footer_c1:'Über Uns', footer_c2:'Unsere Auswahl', footer_c3:'Partner werden', footer_c4:'Blog',
+      footer_l1:'Datenschutz', footer_l2:'Nutzungsbedingungen', footer_l3:'Affiliate-Offenlegung', footer_l4:'Cookie-Richtlinie',
+      footer_copy:'© 2025 Mo Life. Alle Rechte vorbehalten.',
+      footer_disc:'Affiliate-Offenlegung: Mo Life verdient eine Provision für qualifizierte Käufe über Links auf dieser Seite, ohne zusätzliche Kosten für dich.',
+    },
+    tl: {
+      hero_h1: 'Mabuhay nang <em>Matapang.</em><br>Maglakbay nang Malayo.<br>Maramdaman ang Buhay.',
+      hero_btn1: 'Tuklasin ang mga Produkto', hero_btn2: 'Tingnan ang mga Kategorya',
+      cat_title: 'Ang iyong mundo,<br><em>ganap na handa.</em>',
+      cat1_name: 'Ang Nomad<br>Koleksyon', cat2_name: 'Ang Vitality<br>Edit', cat3_name: 'Ang Style<br>Arsenal',
+      prod_section_title: 'Mga pinakamahusay<br><em>na natuklasan.</em>',
+      p1_cat:'Paglalakbay / Tech', p1_name:'Sony WH-1000XM5 Headphones', p1_desc:'Pinakamahusay na noise cancellation. 30 oras na baterya. Nakatiklop para sa carry-on.',
+      p2_cat:'Paglalakbay / Tech', p2_name:'Anker 27W MagSafe Power Bank', p2_desc:'Manipis, ligtas sa paliparan, kumakapit sa iyong telepono. Huwag nang maghanap ng outlet.',
+      p3_cat:'Kalusugan / Wellness', p3_name:'AG1 Araw-araw na Greens', p3_desc:'75 bitamina, mineral, at sustansya. Isang kutsara ang sumasaklaw sa iyong pangangailangan.',
+      p4_cat:'Kalusugan / Wellness', p4_name:'Whoop 4.0 Band', p4_desc:'Subaybayan ang pahinga, pagsisikap, at tulog 24/7. Ang wearable ng mga tunay na atleta.',
+      p5_cat:'Fashion / Beauty', p5_name:'Lunya Washable Silk Set', p5_desc:'Nagre-regulate ng temperatura, madaling dalhin, kasing luho sa hotel kung paano ito naramdaman.',
+      p6_cat:'Fashion / Estilo', p6_name:'Quay Polarised Sunglasses', p6_desc:'UV400 lenses, magagandang frame, kasama ang case. Mula pool hanggang rooftop.',
+      badge_hot:'Sikat', badge_new:'Bago', badge_sale:'Sale',
+      why_section_title: 'Inirerekomenda lamang namin<br><em>ang bibilhin namin para sa aming sarili.</em>',
+      news_h2: 'Kunin ang <em>lingguhang balita.</em>', news_p: 'Mga bagong deal, nakatagong hiyas, at piling picks — direkta sa iyong inbox tuwing Huwebes.',
+      footer_desc: 'Ang buhay ay maikli, kaya bakit hindi ito isabuhay nang maganda at malusog. Mga piling produkto para sa mga manlalakbay, wellness enthusiast, at mga mahilig sa estilo.',
+      footer_shop:'Tindahan', footer_company:'Kumpanya', footer_legal:'Legal',
+      footer_s1:'Paglalakbay & Tech', footer_s2:'Kalusugan & Wellness', footer_s3:'Fashion & Beauty', footer_s4:'Lahat ng Produkto',
+      footer_c1:'Tungkol sa Amin', footer_c2:'Paano Kami Pumili', footer_c3:'Makipagtulungan', footer_c4:'Blog',
+      footer_l1:'Patakaran sa Privacy', footer_l2:'Mga Tuntunin ng Paggamit', footer_l3:'Affiliate Disclosure', footer_l4:'Patakaran sa Cookies',
+      footer_copy:'© 2025 Mo Life. Lahat ng karapatan ay nakalaan.',
+      footer_disc:'Affiliate Disclosure: Ang Mo Life ay kumikita ng komisyon mula sa mga kwalipikadong pagbili sa pamamagitan ng mga link sa site na ito, nang walang karagdagang gastos sa inyo.',
+    }
+  };
+  Object.keys(extraKeys).forEach(lang => {
+    if (translations[lang]) Object.assign(translations[lang], extraKeys[lang]);
+  });
+
+  let currentLang = 'en';
+  let currentCurrency = { code: 'USD', symbol: '$', rate: 1 };
+
+  /* Store original USD prices on page load */
+  document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.product-price').forEach(el => {
+      const raw = el.textContent.replace(/[^0-9.]/g, '');
+      if (raw) el.dataset.usd = raw;
+    });
+    document.querySelectorAll('.product-price-orig').forEach(el => {
+      const raw = el.textContent.replace(/[^0-9.]/g, '');
+      if (raw) el.dataset.usd = raw;
+    });
+  });
+
+  /* ── LANGUAGE ── */
+  function setLang(code, label, e) {
+    e.stopPropagation();
+    currentLang = code;
+    document.getElementById('langLabel').textContent = label;
+    document.querySelectorAll('#langDropdown .switcher-option').forEach(o => o.classList.remove('active'));
+    e.target.classList.add('active');
+    document.getElementById('langSwitcher').classList.remove('open');
+    applyTranslations();
+  }
+
+  function set(sel, val, html=false) {
+    const el = document.querySelector(sel);
+    if (el) html ? el.innerHTML = val : el.textContent = val;
+  }
+  function setAll(sel, arr, html=false) {
+    document.querySelectorAll(sel).forEach((el,i) => { if(arr[i] !== undefined) html ? el.innerHTML = arr[i] : el.textContent = arr[i]; });
+  }
+
+  function applyTranslations() {
+    const t = translations[currentLang];
+    if (!t) return;
+
+    // Nav
+    document.querySelectorAll('[data-i18n]').forEach(el => { if(t[el.dataset.i18n]) el.textContent = t[el.dataset.i18n]; });
+
+    // Hero
+    set('.hero-eyebrow', t.hero_eyebrow || 'MO LIFE');
+    const h1 = document.querySelector('.hero h1');
+    if (h1) h1.innerHTML = t.hero_h1 || h1.innerHTML;
+    set('.hero-sub', t.hero_sub);
+    const heroBtns = document.querySelectorAll('.hero-actions a');
+    if (heroBtns[0]) heroBtns[0].textContent = t.hero_btn1;
+    if (heroBtns[1]) heroBtns[1].textContent = t.hero_btn2;
+    setAll('.hero-stat-label', [t.hero_stat1, t.hero_stat2, t.hero_stat3, t.hero_stat4]);
+
+    // Categories
+    set('.categories .section-label', t.cat_label);
+    const catTitle = document.querySelector('.categories .section-title');
+    if (catTitle) catTitle.innerHTML = t.cat_title || catTitle.innerHTML;
+    setAll('.cat-tag', [t.cat1_tag, t.cat2_tag, t.cat3_tag]);
+    setAll('.cat-name', [t.cat1_name, t.cat2_name, t.cat3_name], true);
+    setAll('.cat-desc', [t.cat1_desc, t.cat2_desc, t.cat3_desc]);
+
+    // Products section header
+    set('#featured .section-label', t.prod_label);
+    const prodTitle = document.querySelector('#featured .section-title');
+    if (prodTitle) prodTitle.innerHTML = t.prod_section_title || prodTitle.innerHTML;
+
+    // Filter tabs
+    setAll('.filter-tab', [t.filter_all, t.filter_travel, t.filter_wellness, t.filter_style]);
+
+    // Product cards — names, descs, cats, badges, CTAs
+    const cards = document.querySelectorAll('.product-card');
+    const pKeys = [
+      {cat:'p1_cat',name:'p1_name',desc:'p1_desc'},
+      {cat:'p2_cat',name:'p2_name',desc:'p2_desc'},
+      {cat:'p3_cat',name:'p3_name',desc:'p3_desc'},
+      {cat:'p4_cat',name:'p4_name',desc:'p4_desc'},
+      {cat:'p5_cat',name:'p5_name',desc:'p5_desc'},
+      {cat:'p6_cat',name:'p6_name',desc:'p6_desc'},
+    ];
+    cards.forEach((card, i) => {
+      const ctaEl = card.querySelector('.product-cta');
+      if (ctaEl) ctaEl.textContent = t.shop_deal;
+      const badge = card.querySelector('.product-badge');
+      if (badge) {
+        const bc = badge.classList.contains('badge-hot') ? 'badge_hot' : badge.classList.contains('badge-new') ? 'badge_new' : 'badge_sale';
+        if (t[bc]) badge.textContent = t[bc];
+      }
+
+      // Try card-stored translations first (for new/custom products)
+      const stored = card.dataset.translations ? JSON.parse(card.dataset.translations) : {};
+      const storedLang = stored[currentLang];
+
+      const nameEl = card.querySelector('.product-name');
+      const descEl = card.querySelector('.product-desc');
+      const catEl = card.querySelector('.product-cat');
+
+      if (storedLang?.name && nameEl) { nameEl.textContent = storedLang.name; }
+      else if (pKeys[i] && t[pKeys[i].name] && nameEl) { nameEl.textContent = t[pKeys[i].name]; }
+
+      if (storedLang?.desc && descEl) { descEl.textContent = storedLang.desc; }
+      else if (pKeys[i] && t[pKeys[i].desc] && descEl) { descEl.textContent = t[pKeys[i].desc]; }
+
+      if (pKeys[i] && t[pKeys[i].cat] && catEl) catEl.textContent = t[pKeys[i].cat];
+    });
+
+    // Why section
+    set('.why .section-label', t.why_label);
+    const whyTitle = document.querySelector('.why .section-title');
+    if (whyTitle) whyTitle.innerHTML = t.why_section_title || whyTitle.innerHTML;
+    setAll('.why-title', [t.why1_title, t.why2_title, t.why3_title, t.why4_title]);
+    setAll('.why-body', [t.why1_body, t.why2_body, t.why3_body, t.why4_body]);
+
+    // Newsletter
+    const newsH2 = document.querySelector('.newsletter h2');
+    if (newsH2) newsH2.innerHTML = t.news_h2 || newsH2.innerHTML;
+    set('.newsletter p', t.news_p);
+    set('.email-form button', t.news_btn);
+    const newsInput = document.querySelector('.email-form input');
+    if (newsInput) newsInput.placeholder = t.news_placeholder;
+
+    // Footer
+    set('.footer-brand-desc', t.footer_desc);
+    const footerCols = document.querySelectorAll('.footer-col h4');
+    if (footerCols[0]) footerCols[0].textContent = t.footer_shop;
+    if (footerCols[1]) footerCols[1].textContent = t.footer_company;
+    if (footerCols[2]) footerCols[2].textContent = t.footer_legal;
+    const shopLinks = document.querySelectorAll('.footer-col:nth-child(2) a');
+    setAll('.footer-col:nth-child(2) a', [t.footer_s1, t.footer_s2, t.footer_s3, t.footer_s4]);
+    setAll('.footer-col:nth-child(3) a', [t.footer_c1, t.footer_c2, t.footer_c3, t.footer_c4]);
+    setAll('.footer-col:nth-child(4) a', [t.footer_l1, t.footer_l2, t.footer_l3, t.footer_l4]);
+    set('.footer-copy', t.footer_copy);
+    set('.footer-disc', t.footer_disc);
+  }
+
+  /* ── CURRENCY ── */
+  function setCurrency(code, symbol, rate, e) {
+    e.stopPropagation();
+    currentCurrency = { code, symbol, rate };
+    document.getElementById('currLabel').textContent = code + ' ' + symbol;
+    document.querySelectorAll('#currDropdown .switcher-option').forEach(o => o.classList.remove('active'));
+    e.target.classList.add('active');
+    document.getElementById('currSwitcher').classList.remove('open');
+    updatePrices();
+  }
+
+  function updatePrices() {
+    const { symbol, rate } = currentCurrency;
+    document.querySelectorAll('.product-price').forEach(el => {
+      const usd = parseFloat(el.dataset.usd);
+      if (!isNaN(usd)) {
+        const converted = (usd * rate).toFixed(0);
+        el.textContent = symbol + converted;
+      }
+    });
+    document.querySelectorAll('.product-price-orig').forEach(el => {
+      const usd = parseFloat(el.dataset.usd);
+      if (!isNaN(usd)) {
+        const converted = (usd * rate).toFixed(0);
+        el.textContent = symbol + converted;
+      }
+    });
+  }
+
+  /* ── DROPDOWN TOGGLE ── */
+  function toggleDropdown(id, e) {
+    e.stopPropagation();
+    const btn = document.getElementById(id);
+    const isOpen = btn.classList.contains('open');
+    document.querySelectorAll('.switcher-btn').forEach(b => b.classList.remove('open'));
+    if (!isOpen) btn.classList.add('open');
+  }
+  document.addEventListener('click', () => {
+    document.querySelectorAll('.switcher-btn').forEach(b => b.classList.remove('open'));
+  });
+</script>
+
+</body>
+</html>
